@@ -9,10 +9,10 @@ let package = Package(
     products: [.library(name: "MLXStructured", targets: ["MLXStructured"])],
     dependencies: [
         .package(url: "https://github.com/ml-explore/mlx-swift", from: "0.30.2"),
-        .package(url: "https://github.com/ml-explore/mlx-swift-lm", branch: "mlx0301"),
+        .package(url: "https://github.com/ml-explore/mlx-swift-lm", from: "2.30.0"),
         .package(url: "https://github.com/huggingface/swift-transformers", from: "1.1.0"),
         .package(url: "https://github.com/petrukha-ivan/swift-json-schema", from: "2.0.2"),
-        .package(url: "https://github.com/apple/swift-argument-parser", from: "1.4.0"),
+        .package(url: "https://github.com/apple/swift-argument-parser", from: "1.4.0")
     ],
     targets: [
         // C package
@@ -25,17 +25,17 @@ let package = Package(
                 "xgrammar/3rdparty/googletest",
                 "xgrammar/3rdparty/dlpack/contrib",
                 "xgrammar/3rdparty/picojson",
-                "xgrammar/cpp/nanobind",
+                "xgrammar/cpp/nanobind"
             ],
             cSettings: [
                 .headerSearchPath("xgrammar/include"),
                 .headerSearchPath("xgrammar/3rdparty/dlpack/include"),
-                .headerSearchPath("xgrammar/3rdparty/picojson"),
+                .headerSearchPath("xgrammar/3rdparty/picojson")
             ],
             cxxSettings: [
                 .headerSearchPath("xgrammar/include"),
                 .headerSearchPath("xgrammar/3rdparty/dlpack/include"),
-                .headerSearchPath("xgrammar/3rdparty/picojson"),
+                .headerSearchPath("xgrammar/3rdparty/picojson")
             ]
         ),
         // Main package
@@ -54,17 +54,17 @@ let package = Package(
             dependencies: [
                 .target(name: "MLXStructured"),
                 .product(name: "MLXLLM", package: "mlx-swift-lm"),
-                .product(name: "ArgumentParser", package: "swift-argument-parser"),
-            ],
+                .product(name: "ArgumentParser", package: "swift-argument-parser")
+            ]
         ),
         // Unit tests
         .testTarget(
             name: "MLXStructuredTests",
             dependencies: [
                 .target(name: "MLXStructured"),
-                .product(name: "MLXLLM", package: "mlx-swift-lm"),
-            ],
-        ),
+                .product(name: "MLXLLM", package: "mlx-swift-lm")
+            ]
+        )
     ],
     cxxLanguageStandard: .gnucxx17
 )
